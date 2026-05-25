@@ -31,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Flyway ###
+db/
+flyway.conf
+
+### H2 Database ###
+src/main/resources/application-local.properties
+data/
+
+
