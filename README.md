@@ -18,6 +18,7 @@ task_completed(<u>id</u>, task_occurrence_id, user_id, completed_at)
     where task_occurrence_id references task_occurrence(id), user_id references user(id)
 
 household_members(<u>household_id, user_id</u>, name, joined_at)
+    where household_id references household(id), user_id references user(id)
 
 
 
