@@ -9,7 +9,7 @@ task_occurrence(<u>id</u>, title, isCompleted?, time_to_complete, due_at, assign
     
     where assigned_to references user(id), household_id references household(id)
 
-user(<u>id</u>,weekly_hours_worked, created_at, updated_at)
+user(<u>id</u>, username, password, weekly_hours_worked, created_at, updated_at)
 
 household(<u>id</u>, created_at, updated_at)
 
@@ -17,7 +17,7 @@ task_completed(<u>id</u>, task_occurrence_id, user_id, completed_at)
 
     where task_occurrence_id references task_occurrence(id), user_id references user(id)
 
-household_members(<u>household_id, user_id</u>, joined_at)
+household_members(<u>household_id, user_id</u>, name, joined_at)
 
 
 
