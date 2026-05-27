@@ -40,4 +40,6 @@ flyway.conf
 src/main/resources/application-local.properties
 data/
 
+### Others ###
+decissions.md
 
