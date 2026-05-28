@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class TaskOcurrence {
+public class TaskOccurrence {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,20 +42,22 @@ public class TaskOcurrence {
     @JoinColumn(name = "recurring_task_id")
     private RecurringTask recurringTask;
 
+    public TaskOccurrence() {}
 
-    public TaskOcurrence() {}
-
-    public TaskOcurrence(Long id, String title, boolean completed, int durationMinutes, Timestamp dueAt, User assignedTo,
-            Household household, Timestamp createdAt, Timestamp updatedAt) {
+    public TaskOccurrence(Long id, String title, boolean completed, int durationMinutes, Timestamp dueAt,
+            Timestamp createdAt, Timestamp updatedAt, Household household, User assignedTo,
+            List<TaskCompleted> completetionData, RecurringTask recurringTask) {
         this.id = id;
         this.title = title;
         this.completed = completed;
         this.durationMinutes = durationMinutes;
         this.dueAt = dueAt;
-        this.assignedTo = assignedTo;
-        this.household = household;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.household = household;
+        this.assignedTo = assignedTo;
+        this.completetionData = completetionData;
+        this.recurringTask = recurringTask;
     }
 
     public Long getId() {
@@ -115,6 +117,27 @@ public class TaskOcurrence {
 
     public List<TaskCompleted> getCompletionData() {
         return completetionData;
+    }
+
+    public List<TaskCompleted> getCompletetionData() {
+        return completetionData;
+    }
+
+    public void setCompletetionData(List<TaskCompleted> completetionData) {
+        this.completetionData = completetionData;
+    }
+
+    public RecurringTask getRecurringTask() {
+        return recurringTask;
+    }
+
+    public void setRecurringTask(RecurringTask recurringTask) {
+        this.recurringTask = recurringTask;
+    }
+
+    public void addCompletionData(TaskCompleted taskCompleted){
+        completetionData.add(taskCompleted);
+        taskCompleted.setTaskOccurrence(this);
     }
 
 }

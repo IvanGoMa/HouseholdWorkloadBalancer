@@ -33,19 +33,23 @@ public class Household {
     private List<User> members;
 
     @OneToMany(mappedBy = "household")
-    private List<TaskOcurrence> taskOccurrences;
+    private List<TaskOccurrence> taskOccurrences;
 
     @OneToMany(mappedBy = "household")
     private List<RecurringTask> recurringTasks;
 
     public Household() {
     }
-    
-    public Household(Long id, String name, Timestamp createdAt, Timestamp updatedAt) {
+
+    public Household(Long id, String name, Timestamp createdAt, Timestamp updatedAt, List<User> members,
+            List<TaskOccurrence> taskOccurrences, List<RecurringTask> recurringTasks) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.members = members;
+        this.taskOccurrences = taskOccurrences;
+        this.recurringTasks = recurringTasks;
     }
 
     public Long getId() {
@@ -78,10 +82,10 @@ public class Household {
     public void setMembers(List<User> members) {
         this.members = members;
     }
-    public List<TaskOcurrence> getTaskOccurrences() {
+    public List<TaskOccurrence> getTaskOccurrences() {
         return taskOccurrences;
     }
-    public void setTaskOccurrences(List<TaskOcurrence> taskOccurrences) {
+    public void setTaskOccurrences(List<TaskOccurrence> taskOccurrences) {
         this.taskOccurrences = taskOccurrences;
     }
     public List<RecurringTask> getRecurringTasks() {
@@ -89,5 +93,23 @@ public class Household {
     }
     public void setRecurringTasks(List<RecurringTask> recurringTasks) {
         this.recurringTasks = recurringTasks;
+    }
+
+    public void addMember(User user) {
+        this.members.add(user);
+    }
+
+    public void removeMember(User user) {
+        this.members.remove(user);
+    }
+
+    public void addTaskOccurrence(TaskOccurrence taskOcurrence) {
+        this.taskOccurrences.add(taskOcurrence);
+        taskOcurrence.setHousehold(this);
+    }
+
+    public void addRecurringTask(RecurringTask recurringTask) {
+        this.recurringTasks.add(recurringTask);
+        recurringTask.setHousehold(this);
     }
 }

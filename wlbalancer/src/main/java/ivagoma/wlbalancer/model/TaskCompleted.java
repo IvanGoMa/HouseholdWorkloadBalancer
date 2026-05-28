@@ -18,7 +18,7 @@ public class TaskCompleted {
 
     @ManyToOne
     @JoinColumn(name = "task_occurrence_id", nullable = false)
-    private TaskOcurrence taskOccurrence;
+    private TaskOccurrence taskOccurrence;
 
     @ManyToOne
     @JoinColumn(name = "completed_by")
@@ -28,7 +28,7 @@ public class TaskCompleted {
 
     public TaskCompleted() {}
 
-    public TaskCompleted(Long id, TaskOcurrence taskOccurrence, User completedBy, Timestamp completedAt) {
+    public TaskCompleted(Long id, TaskOccurrence taskOccurrence, User completedBy, Timestamp completedAt) {
         this.id = id;
         this.taskOccurrence = taskOccurrence;
         this.completedBy = completedBy;
@@ -43,11 +43,11 @@ public class TaskCompleted {
         this.id = id;
     }
 
-    public TaskOcurrence getTaskOccurrence() {
+    public TaskOccurrence getTaskOccurrence() {
         return taskOccurrence;
     }
 
-    public void setTaskOccurrence(TaskOcurrence taskOccurrence) {
+    public void setTaskOccurrence(TaskOccurrence taskOccurrence) {
         this.taskOccurrence = taskOccurrence;
     }
 
