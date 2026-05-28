@@ -27,9 +27,6 @@ public class RecurringTask {
 
     private int dueInDays;
     private int repeatInDays;
-
-    @Column(nullable = false)
-    private int householdId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 
@@ -38,20 +35,21 @@ public class RecurringTask {
     private Household household;
 
     @OneToMany(mappedBy = "recurringTask")
-    private List<TaskOcurrence> taskOccurrences;
+    private List<TaskOccurrence> taskOccurrences;
 
     public RecurringTask() {}
-    
-    public RecurringTask(Long id, String title, int durationMinutes, int dueInDays, int repeatInDays, int householdId,
-            Timestamp createdAt, Timestamp updatedAt) {
+
+    public RecurringTask(Long id, String title, int durationMinutes, int dueInDays, int repeatInDays,
+            Timestamp createdAt, Timestamp updatedAt, Household household, List<TaskOccurrence> taskOccurrences) {
         this.id = id;
         this.title = title;
         this.durationMinutes = durationMinutes;
         this.dueInDays = dueInDays;
         this.repeatInDays = repeatInDays;
-        this.householdId = householdId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.household = household;
+        this.taskOccurrences = taskOccurrences;
     }
 
     public Long getId() {
@@ -84,12 +82,6 @@ public class RecurringTask {
     public void setRepeatInDays(int repeatInDays) {
         this.repeatInDays = repeatInDays;
     }
-    public int getHouseholdId() {
-        return householdId;
-    }
-    public void setHouseholdId(int householdId) {
-        this.householdId = householdId;
-    }
     public Timestamp getCreatedAt() {
         return createdAt;
     }
@@ -103,10 +95,24 @@ public class RecurringTask {
         this.updatedAt = updatedAt;
     }
 
-    public List<TaskOcurrence> getTaskOccurrences() {
+    public List<TaskOccurrence> getTaskOccurrences() {
         return taskOccurrences;
     }
-    public void setTaskOccurrences(List<TaskOcurrence> taskOccurrences) {
+    public void setTaskOccurrences(List<TaskOccurrence> taskOccurrences) {
         this.taskOccurrences = taskOccurrences;
     }
+
+    public Household getHousehold() {
+        return household;
+    }
+
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
+
+    public void addTaskOccurrence(TaskOccurrence taskOccurrence){
+        taskOccurrences.add(taskOccurrence);
+        taskOccurrence.setRecurringTask(this);
+    }
+    
 }
