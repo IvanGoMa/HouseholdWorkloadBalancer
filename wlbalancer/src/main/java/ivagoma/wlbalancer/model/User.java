@@ -52,6 +52,13 @@ public class User {
         this.completedTasks = completedTasks;
     }
 
+    public User(String username, String password, Timestamp createdAt, Timestamp updatedAt){
+        this.username = username;
+        this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public String getPassword() {
         return password;
     }
