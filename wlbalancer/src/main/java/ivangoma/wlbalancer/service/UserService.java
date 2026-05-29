@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class UserService {
             User savedUser = repository.save(user);
             return userMapper.toDTO(savedUser); 
                       
-        } catch (IllegalArgumentException e) {
+        } catch (DataIntegrityViolationException e) {
             return null;
         }
     }
@@ -89,15 +90,11 @@ public class UserService {
         if(optUser.isEmpty()) throw new NoSuchElementException("User not found");
 
         User user = optUser.get();
-        String encodedOldPassword = passwordEncoder.encode(changePassword.oldPassword());
-
-        if (!user.getPassword().equals(encodedOldPassword)) throw new BadCredentialsException("Incorrect old password");
+        if (!passwordEncoder.matches(changePassword.oldPassword(), user.getPassword())) throw new BadCredentialsException("Incorrect old password");
 
         String encodedNewPassword = passwordEncoder.encode(changePassword.newPassword());
         user.setPassword(encodedNewPassword);
         repository.save(user);
-
-        
     }
 
     public void changeUsername(Long id, String newUsername) {
