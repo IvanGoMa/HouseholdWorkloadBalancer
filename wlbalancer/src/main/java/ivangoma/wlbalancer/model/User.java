@@ -1,8 +1,7 @@
-package ivagoma.wlbalancer.model;
+package ivangoma.wlbalancer.model;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

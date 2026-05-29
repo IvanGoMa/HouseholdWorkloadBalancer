@@ -1,4 +1,4 @@
-package ivagoma.wlbalancer.model;
+package ivangoma.wlbalancer.model;
 
 import java.sql.Timestamp;
 

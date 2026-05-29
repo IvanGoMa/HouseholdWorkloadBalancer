@@ -9,11 +9,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import ivagoma.wlbalancer.model.User;
 import ivangoma.wlbalancer.dto.ChangePasswordDTO;
 import ivangoma.wlbalancer.dto.UserRequestDTO;
 import ivangoma.wlbalancer.dto.UserResponseDTO;
 import ivangoma.wlbalancer.mapper.UserMapper;
+import ivangoma.wlbalancer.model.User;
 import ivangoma.wlbalancer.repository.UserRepository;
 import jakarta.transaction.Transactional;
 

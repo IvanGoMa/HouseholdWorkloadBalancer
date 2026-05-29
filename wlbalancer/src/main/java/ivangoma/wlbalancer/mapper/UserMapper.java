@@ -4,9 +4,9 @@ import java.sql.Timestamp;
 
 import org.springframework.stereotype.Component;
 
-import ivagoma.wlbalancer.model.User;
 import ivangoma.wlbalancer.dto.UserRequestDTO;
 import ivangoma.wlbalancer.dto.UserResponseDTO;
+import ivangoma.wlbalancer.model.User;
 
 @Component
 public class UserMapper {
