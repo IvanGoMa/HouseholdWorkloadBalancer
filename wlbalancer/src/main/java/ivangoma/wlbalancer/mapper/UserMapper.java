@@ -13,7 +13,7 @@ public class UserMapper {
 
     public User toEntity (UserRequestDTO dto){
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        return new User(dto.getUsername(), dto.getPassword(), now, now);
+        return new User(dto.username(), dto.password(), now, now);
     }
 
     public UserResponseDTO toDTO (User user){
