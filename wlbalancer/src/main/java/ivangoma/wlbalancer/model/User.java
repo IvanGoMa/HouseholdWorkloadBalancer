@@ -1,7 +1,11 @@
 package ivangoma.wlbalancer.model;
 
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +16,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity(name="users")
-public class User {
+public class User implements UserDetails{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +62,7 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -90,6 +95,7 @@ public class User {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
@@ -140,6 +146,12 @@ public class User {
     public void removeHousehold(Household household) {
         households.remove(household);
         household.getMembers().remove(this);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
     }
 
     

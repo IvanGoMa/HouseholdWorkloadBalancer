@@ -14,6 +14,7 @@ import java.util.NoSuchElementException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,7 +95,7 @@ public class UserController {
             UserResponseDTO user = service.findByUsername(username);
             return ResponseEntity.ok(user);
 
-        } catch (NoSuchElementException e) {
+        } catch (UsernameNotFoundException e) {
             return ResponseEntity.badRequest().body(String.format("User with username %s not found", username));
 
         } catch (Exception e){

@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +80,7 @@ public class UserService {
     public UserResponseDTO findByUsername(String username) {
 
         Optional<User> optUser = repository.findByUsername(username);
-        if(optUser.isEmpty()) throw new NoSuchElementException("User not found");
+        if(optUser.isEmpty()) throw new UsernameNotFoundException("User not found");
         return userMapper.toDTO(optUser.get());
     }
 
