@@ -1,8 +1,7 @@
-package ivagoma.wlbalancer.model;
+package ivangoma.wlbalancer.model;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,6 +49,13 @@ public class User {
         this.households = households;
         this.assignedTasks = assignedTasks;
         this.completedTasks = completedTasks;
+    }
+
+    public User(String username, String password, Timestamp createdAt, Timestamp updatedAt){
+        this.username = username;
+        this.password = password;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public String getPassword() {
